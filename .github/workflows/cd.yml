@@ -16,11 +16,10 @@ jobs:
    steps:
    - name: Checkout
      uses: actions/checkout@v2
-   - name: Get Assembly Version
-     id: get_version
-     uses: jasondavis303/net-sdk-proj-file-version@v1.0.1
-     with: 
-      PROJ_FILE: CalcHelperDesktop/CalcHelperDesktop.csproj 
+   - id: make_version_string
+     uses: sandersaares-actions/make-version-string@master
+     with:
+      assemblyInfoPath: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
    - name: Create release
      id: create_release
      uses: actions/create-release@v1
