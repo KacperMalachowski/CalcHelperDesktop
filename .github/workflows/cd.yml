@@ -14,18 +14,19 @@ jobs:
    outputs:
      upload-url: ${{ steps.create_release.outputs.upload_url }}
    steps:
-   - id: make_version_string
-     uses: sandersaares-actions/make-version-string@master
-     with:
-      assemblyInfoPath: .\Properties\AssemblyInfo.cs
+   - name: Get Assembly Version
+     id: get_version
+     uses: jasondavis303/net-sdk-proj-file-version@v1.0.1
+     with: 
+      PROJ_FILE: CalcHelperDesktop/CalcHelperDesktop.csproj 
    - name: Create release
      id: create_release
      uses: actions/create-release@v1
      env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
-        tag_name: ${{ steps.make_version_string.outputs.versionstring }}
-        release_name: ${{ steps.make_version_string.outputs.versionstring }}
+        tag_name: v${{ steps.get_version.outputs.ASSEMBLY_VERSION }}
+        release_name: v${{ steps.get_version.outputs.ASSEMBLY_VERSION }}
         draft: false
         prerelease: false
      
