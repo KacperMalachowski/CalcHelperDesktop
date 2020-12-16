@@ -11,6 +11,8 @@ on:
 jobs:
   create-release:
    runs-on: windows-latest
+   outputs:
+     upload-url: ${{ steps.create_release.outputs.upload_url }}
    steps:
    - name: Extract tag name
      id: tag
@@ -29,8 +31,6 @@ jobs:
         release_name: ${{ steps.tag.outputs.result }}
         draft: false
         prerelease: false
-   - id: set_upload_url
-     run: echo "::set-output name=upload-url::${{ steps.create_release.outputs.upload_url }}"
      
   build:
     needs: [create-release]
