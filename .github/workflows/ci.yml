@@ -9,25 +9,14 @@ jobs:
         targetplatform: [x86, x64]
     runs-on: windows-latest
     env:
-      App_Packages_Directory: AppPackages
-      SigningCertificate: GitHubActionsDemo.pfx
-      Solution_Path: MyWpfApp.sln
-      Test_Project_Path: MyWpfApp.Tests\MyWpfApp.Tests.csproj
-      Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
-      Wap_Project_Directory: MyWpfApp.Package
-      Wap_Project_Name: MyWpfApp.Package.wapproj
-      Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
+      Solution_Path: CalcHelperDesktop.sln
+      Test_Project_Path: CalcHelperDesktop.Tests\CalcHelperDesktop.Tests.csproj
+      Wpf_Project_Path: CalcHelperDesktop\CalcHelperDesktop.csproj
+      Actions_Allow_Unsecure_Commands: true
   
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    
-    - name: Use Nerdbank.GitVersioning to set version variable
-      uses: aarnott/nbgv@v0.4
-      with:
-        setAllVars: true
     
     - name: Install .NetCore
       uses: actions/setup-dotnet@v1
@@ -36,43 +25,19 @@ jobs:
     
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.1
-    
-    - name: Update manifest version
-      run: |
-        [xml]$manifest = get-content ".\$env:Wap_Project_Directory\Package.appxmanifest"
-        $manifest.Package.Identity.Version = "$env:NBGV_SimpleVersion.0"
-        $manifest.save(".\$env:Wap_Project_Directory\Package.appxmanifest")
         
     - name: Execute Unit Tests
-      run: dotnet test $env:Test_Project_Pat
+      run: dotnet test $env:Test_Project_Path
     
-    - name:  Restore the Wpf application to populate the obj folder
-      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+    - name: Build Application as single exe
+      run: msbuild .\CalcHelperDesktop.sln /p:Configuration=Release /p:RuntimeIdentifier=win-x64 /p:PublishSingleFile=true /p:UseAppHost=true
       env:
-        Configuration: Debug
+        Configuration: Release
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
-    
-    - name: Decode the Pfx
-      run: |
-        $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-        $currentDirectory = Get-Location
-        $certificatePath = Join-Path -Path $currentDirectory -ChildPath $env:Wap_Project_Directory -AdditionalChildPath $env:SigningCertificate
-        [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
-    
-    - name: Build the Windows Application Packaging Project (wapproj)
-      run: msbuild $env:Solution_Path /p:Platform=$env:TargetPlatform /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:BuildMode /p:AppxBundle=$env:AppxBundle /p:PackageCertificateKeyFile=$env:SigningCertificate /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
-      env:
-        AppxBundle: Never
-        BuildMode: SideloadOnly
-        Configuration: Debug
-        TargetPlatform: ${{ matrix.targetplatform }}
-    
-    - name: Remove the .pfx
-      run: Remove-Item -path $env:Wap_Project_Directory\$env:SigningCertificate
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v1
       with:
-        name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\${{ env.App_Packages_Directory }}
+        name: Exe file
+        path: CalcHelperDesktop\bin\Release\app.publish
       
