@@ -25,18 +25,21 @@ jobs:
     
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.1
-     
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.5
     
-    - name: Restore NuGet Packages
+    - name: Restore application dependencies
+      run: msbuild .\CalcHelperDesktop.sln /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+      env:
+        Configuration: Release
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+    
+    - name: Restore Project
       run: nuget restore $env:Solution_Path
     
     - name: Execute Unit Tests
       run: dotnet test $env:Test_Project_Path
     
     - name: Build Application as single exe
-      run: msbuild .\CalcHelperDesktop.sln /p:Configuration=Release /p:RuntimeIdentifier=win-x64 /p:PublishSingleFile=true /p:UseAppHost=true
+      run: msbuild .\CalcHelperDesktop.sln /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier /p:PublishSingleFile=true /p:UseAppHost=true
       env:
         Configuration: Release
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
