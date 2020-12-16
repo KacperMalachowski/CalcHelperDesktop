@@ -16,10 +16,11 @@ jobs:
    steps:
    - name: Checkout
      uses: actions/checkout@v2
-   - id: make_version_string
-     uses: sandersaares-actions/make-version-string@master
+   - name: Get version
+     id: get_version
+     uses: jasondavis303/assembly-info-version
      with:
-      assemblyInfoPath: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
+      AI_PATH: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
    - name: Create release
      id: create_release
      uses: actions/create-release@v1
