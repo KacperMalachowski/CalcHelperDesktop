@@ -32,9 +32,6 @@ jobs:
         Configuration: Release
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
     
-    - name: Restore Project
-      run: nuget restore $env:Solution_Path
-    
     - name: Execute Unit Tests
       run: dotnet test $env:Test_Project_Path
     
