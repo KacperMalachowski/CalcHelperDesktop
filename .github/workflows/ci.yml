@@ -44,6 +44,6 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Exe file
+        name: Dev (win-${{ matrix.targetplatform }})
         path: CalcHelperDesktop\bin\Release\app.publish
       
