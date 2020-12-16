@@ -16,19 +16,18 @@ jobs:
    steps:
    - name: Checkout
      uses: actions/checkout@v2
-   - name: Get version
-     id: get_version
-     uses: jasondavis303/assembly-info-version@v1.0.1
+   - id: make_version_string
+     uses: sandersaares-actions/make-version-string@master
      with:
-      AI_PATH: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
+      assemblyInfoPath: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
    - name: Create release
      id: create_release
      uses: actions/create-release@v1
      env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
-        tag_name: v${{ steps.get_version.outputs.ASSEMBLY_VERSION }}
-        release_name: v${{ steps.get_version.outputs.ASSEMBLY_VERSION }}
+        tag_name: v${{ steps.make_version_string.outputs.versionstring }}
+        release_name: v${{ steps.make_version_string.outputs.versionstring }}
         draft: false
         prerelease: false
      
