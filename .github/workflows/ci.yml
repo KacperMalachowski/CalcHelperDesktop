@@ -30,7 +30,7 @@ jobs:
     - name: Restore application dependencies
       run: msbuild .\CalcHelperDesktop.sln /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
-        Configuration: Release
+        Configuration: Debug
         RuntimeIdentifier: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}
     
     - name: Execute Unit Tests
@@ -39,12 +39,12 @@ jobs:
     - name: Build Application as single exe
       run: msbuild .\CalcHelperDesktop.sln /t:CalcHelperDesktop /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier /p:PublishSingleFile=true /p:UseAppHost=true
       env:
-        Configuration: Release
+        Configuration: Debug
         RuntimeIdentifier: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Dev (${{ matrix.targetSystem }}-${{ matrix.targetplatform }})
-        path: CalcHelperDesktop\bin\Release\app.publish
+        path: CalcHelperDesktop\bin\Debug\app.publish
       
