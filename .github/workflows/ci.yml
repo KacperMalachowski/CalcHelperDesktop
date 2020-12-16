@@ -36,7 +36,7 @@ jobs:
       run: dotnet test $env:Test_Project_Path
     
     - name: Build Application as single exe
-      run: msbuild .\CalcHelperDesktop.sln /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier /p:PublishSingleFile=true /p:UseAppHost=true
+      run: msbuild .\CalcHelperDesktop.sln /t:CalcHelperDesktop /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier /p:PublishSingleFile=true /p:UseAppHost=true
       env:
         Configuration: Release
         RuntimeIdentifier: win-${{ matrix.targetplatform }}
