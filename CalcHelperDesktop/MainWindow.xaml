@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalcHelperDesktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pomocnik Obliczeń Kolejowych" Height="450" Width="800">
+    <Window.Resources>
+        <local:WpConverter x:Key="WpConverter"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" MinHeight="60" />
+        <Frame x:Name="_NavigationFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Width="Auto" />
+        <Rectangle Margin="3" Grid.Row="2" Fill="Cyan" Height="50" HorizontalAlignment="Stretch"/>
+
     </Grid>
 </Window>

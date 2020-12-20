@@ -23,6 +23,7 @@ namespace CalcHelperDesktop
         public MainWindow()
         {
             InitializeComponent();
+            _NavigationFrame.Navigate(new Pages.Welcome());
         }
     }
 }
