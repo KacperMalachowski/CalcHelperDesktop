@@ -15,9 +15,11 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" MinHeight="60" />
+        <Menu Grid.Row="0" MinHeight="38" >
+            <MenuItem Header="Obliczenia" Margin="5,10" VerticalAlignment="Center">
+            </MenuItem>
+        </Menu>
         <Frame x:Name="_NavigationFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Width="Auto" />
         <Rectangle Margin="3" Grid.Row="2" Fill="Cyan" Height="50" HorizontalAlignment="Stretch"/>
-
     </Grid>
 </Window>
