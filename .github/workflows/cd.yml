@@ -2,35 +2,34 @@ name: Calc Helper Continous Delivery
 
 on:
   push:
-    tags: 
-      - '*'
+    branches: 
+      - main
   pull_request:
-    tags: 
-      - '*'
+    branches: 
+      - main
 
 jobs:
   create-release:
-   runs-on: windows-latest
+   runs-on: ubuntu-latest
+   outputs:
+     upload-url: ${{ steps.create_release.outputs.upload_url }}
    steps:
-   - name: Extract tag name
-     id: tag
-     uses: actions/github-script@0.2.0
+   - name: Checkout
+     uses: actions/checkout@v2
+   - id: make_version_string
+     uses: sandersaares-actions/make-version-string@master
      with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      script: |
-       return context.payload.ref.replace(/\/refs\/tags\//, '');
+      assemblyInfoPath: .\CalcHelperDesktop\Properties\AssemblyInfo.cs
    - name: Create release
      id: create_release
      uses: actions/create-release@v1
      env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      with:
-        tag_name: ${{ steps.tag.outputs.result }}
-        release_name: ${{ steps.tag.outputs.result }}
+        tag_name: ${{ steps.make_version_string.outputs.versionstring }}
+        release_name: ${{ steps.make_version_string.outputs.versionstring }}
         draft: false
         prerelease: false
-   - id: set_upload_url
-     run: echo "::set-output name=upload-url::${{ steps.create_release.outputs.upload_url }}"
      
   build:
     needs: [create-release]

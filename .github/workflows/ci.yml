@@ -46,6 +46,7 @@ jobs:
         RuntimeIdentifier: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}
     
     - name: Execute Unit Tests
+
       run: Get-ChildItem "LegacyProjTests" -recurse | where {$_.extension -eq ".csproj"} | % { dotnet test $_.FullName }
     
     - name: Upload build artifacts
