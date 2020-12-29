@@ -13,21 +13,7 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" Fill="BlueViolet" Height="75" HorizontalAlignment="Stretch"/>
-        <WrapPanel x:Name="wp" Grid.Row="1" HorizontalAlignment="Stretch" Orientation="Horizontal">
-            <StackPanel Width="100">
-                <Rectangle Fill="CornflowerBlue" Height="20" Margin="3"/>
-                <Rectangle Fill="CornflowerBlue" Height="20" Margin="3"/>
-                <Rectangle Fill="CornflowerBlue" Height="20" Margin="3"/>
-                <Rectangle Fill="CornflowerBlue" Height="20" Margin="3"/>
-            </StackPanel>
-            <Grid HorizontalAlignment="Stretch" Width="{Binding Path=ActualWidth, ElementName=wp,Converter={StaticResource WpConverter}}"></Grid>
-            <Rectangle Margin="3" Fill="CornflowerBlue" Width="94" Height="200" ></Rectangle>
-        </WrapPanel>
-        <Rectangle Margin="3" Grid.Row="2" Fill="Cyan" Height="50" HorizontalAlignment="Stretch"/>
     </Grid>
 </Page>
