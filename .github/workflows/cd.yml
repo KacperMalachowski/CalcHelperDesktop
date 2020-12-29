@@ -59,13 +59,13 @@ jobs:
     - name: Restore application dependencies
       run: msbuild .\CalcHelperDesktop.sln /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
       env:
-        Configuration: Debug
+        Configuration: Release
         RuntimeIdentifier: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}
     
     - name: Build Application as single exe
       run: msbuild .\CalcHelperDesktop.sln /t:CalcHelperDesktop /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier /p:PublishSingleFile=true /p:UseAppHost=true
       env:
-        Configuration: Debug
+        Configuration: Release
         RuntimeIdentifier: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}
     
     - name: Execute Unit Tests
@@ -74,8 +74,8 @@ jobs:
     - name: Archive builds artifacts
       uses: papeloto/action-zip@v1
       with:
-       files: dist/ manifest.json
-       dest: Dev (${{ matrix.targetSystem }}-${{ matrix.targetplatform }}).zip
+       files: CalcHelperDesktop\bin\Release\app.publish CalcHelperDesktop\bin\Debug\app.publish
+       dest: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}.zip
     
     - name: Update release asset
       id: upload-release-asset
@@ -84,7 +84,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ needs.create-release.outputs.upload-url }}
-        asset_path: Dev (${{ matrix.targetSystem }}-${{ matrix.targetplatform }}).zip
-        asset_name: Dev (${{ matrix.targetSystem }}-${{ matrix.targetplatform }})
+        asset_path: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}.zip
+        asset_name: ${{ matrix.targetSystem }}-${{ matrix.targetplatform }}.zip
         asset_content_type: application/zip
    
