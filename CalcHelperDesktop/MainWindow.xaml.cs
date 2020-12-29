@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,18 @@ namespace CalcHelperDesktop
         public MainWindow()
         {
             InitializeComponent();
+            _NavigationFrame.Navigate(new Pages.Welcome());
+            VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
+        }
+
+        private void StartNavbarItem_Click(object sender, RoutedEventArgs e)
+        {
+            _NavigationFrame.Navigate(new Pages.Welcome());
+        }
+
+        private void TransitionCurvesNavbarItem_Click(object sender, RoutedEventArgs e)
+        {
+            _NavigationFrame.Navigate(new Pages.TransitionCurves());
         }
     }
 }

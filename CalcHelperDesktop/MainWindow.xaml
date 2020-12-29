@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalcHelperDesktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Pomocnik Obliczeń Kolejowych" Height="450" Width="800">
+    <Window.Resources>
+        <local:WpConverter x:Key="WpConverter"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" MinHeight="38" >
+            <MenuItem Name="StartNavbarItem" Header="Start" Click="StartNavbarItem_Click" />
+            <MenuItem Header="Obliczenia" Margin="5,10" VerticalAlignment="Center" >
+                <MenuItem Name="TransitionCurvesNavbarItem" Header="Krzywe Przejściowe" Click="TransitionCurvesNavbarItem_Click" />
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="_NavigationFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Width="Auto" />
+        <StackPanel Margin="3" Grid.Row="2" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Name="VersionLabel" HorizontalContentAlignment="Center" Content="Version:" />
+            <Label Name="CopyrightLabel" HorizontalContentAlignment="Center" Content="© Kacper Małachowski 2020" />
+        </StackPanel>
     </Grid>
 </Window>
