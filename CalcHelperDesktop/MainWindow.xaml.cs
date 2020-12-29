@@ -25,7 +25,7 @@ namespace CalcHelperDesktop
         {
             InitializeComponent();
             _NavigationFrame.Navigate(new Pages.Welcome());
-            VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
+            VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version}";
         }
 
         private void StartNavbarItem_Click(object sender, RoutedEventArgs e)
