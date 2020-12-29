@@ -16,7 +16,9 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" MinHeight="38" >
-            <MenuItem Header="Obliczenia" Margin="5,10" VerticalAlignment="Center">
+            <MenuItem Name="StartNavbarItem" Header="Start" Click="StartNavbarItem_Click" />
+            <MenuItem Header="Obliczenia" Margin="5,10" VerticalAlignment="Center" >
+                <MenuItem Name="TransitionCurvesNavbarItem" Header="Krzywe Przejściowe" Click="TransitionCurvesNavbarItem_Click" />
             </MenuItem>
         </Menu>
         <Frame x:Name="_NavigationFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Width="Auto" />

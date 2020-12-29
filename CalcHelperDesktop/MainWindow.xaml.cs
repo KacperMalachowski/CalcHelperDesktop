@@ -27,5 +27,15 @@ namespace CalcHelperDesktop
             _NavigationFrame.Navigate(new Pages.Welcome());
             VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
         }
+
+        private void StartNavbarItem_Click(object sender, RoutedEventArgs e)
+        {
+            _NavigationFrame.Navigate(new Pages.Welcome());
+        }
+
+        private void TransitionCurvesNavbarItem_Click(object sender, RoutedEventArgs e)
+        {
+            _NavigationFrame.Navigate(new Pages.TransitionCurves());
+        }
     }
 }
