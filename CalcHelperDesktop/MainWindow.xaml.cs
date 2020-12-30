@@ -35,7 +35,7 @@ namespace CalcHelperDesktop
 
         private void TransitionCurvesNavbarItem_Click(object sender, RoutedEventArgs e)
         {
-            _NavigationFrame.Navigate(new Pages.TransitionCurves());
+            _NavigationFrame.Navigate(new Pages.TransitionCurves.Main());
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

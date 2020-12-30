@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CalcHelperDesktop.Pages
+namespace CalcHelperDesktop.Pages.TransitionCurves
 {
     /// <summary>
-    /// Interaction logic for TransitionCurves.xaml
+    /// Interaction logic for StraightToArc.xaml
     /// </summary>
-    public partial class TransitionCurves : Page
+    public partial class StraightToArc : UserControl
     {
-        public TransitionCurves()
+        public StraightToArc()
         {
             InitializeComponent();
         }
@@ -55,7 +55,7 @@ namespace CalcHelperDesktop.Pages
 
         private void TransitionCurveLengthBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.IsInitialized) UpdateStraightToArcShiftParameter();
+            if (this.IsInitialized) UpdateStraightToArcShiftParameter();
         }
 
         private void CurveRadiusBox_TextChanged(object sender, TextChangedEventArgs e)

@@ -84,8 +84,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Calcs\TransitionCurves.cs" />
-    <Compile Include="Pages\TransitionCurves.xaml.cs">
-      <DependentUpon>TransitionCurves.xaml</DependentUpon>
+    <Compile Include="Pages\TransitionCurves\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransitionCurves\StraightToArc.xaml.cs">
+      <DependentUpon>StraightToArc.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
@@ -103,7 +106,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\TransitionCurves.xaml">
+    <Page Include="Pages\TransitionCurves\Main.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TransitionCurves\StraightToArc.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
