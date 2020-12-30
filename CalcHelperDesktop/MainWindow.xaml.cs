@@ -25,7 +25,7 @@ namespace CalcHelperDesktop
         {
             InitializeComponent();
             _NavigationFrame.Navigate(new Pages.Welcome());
-            VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
+            VersionLabel.Content = $"Version: {Assembly.GetExecutingAssembly().GetName().Version}";
         }
 
         private void StartNavbarItem_Click(object sender, RoutedEventArgs e)
@@ -36,6 +36,21 @@ namespace CalcHelperDesktop
         private void TransitionCurvesNavbarItem_Click(object sender, RoutedEventArgs e)
         {
             _NavigationFrame.Navigate(new Pages.TransitionCurves());
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(this.Width < MinWidth)
+            {
+                this.Width = MinWidth;
+                MessageBox.Show($"Minimalna szerokość okna wynosi: {MinWidth} px!");
+            }
+
+            if (this.Height < MinHeight)
+            {
+                this.Width = MinHeight;
+                MessageBox.Show($"Minimalna wysokość okna wynosi: {MinHeight} px!");
+            }
         }
     }
 }

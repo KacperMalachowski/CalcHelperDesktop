@@ -24,5 +24,28 @@ namespace CalcHelperDesktop.Pages
         {
             InitializeComponent();
         }
+
+        private void CalculateShiftParametrButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double TCLength = double.Parse(TransitionCurveLengthBox.Text.Replace(".", ","));
+                double ArcRadius = double.Parse(CurveRadiusBox.Text.Replace(".", ","));
+
+                double ShiftParameter = Calcs.TransitionCurves.ShiftForStraightToArc(TCLength, ArcRadius);
+                double TCHalfLength = TCLength / 2;
+
+                TransitionCurveShiftResult.Text = ShiftParameter.ToString();
+                HalfTransitionCurveLengthResult.Text = TCHalfLength.ToString();
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show($"Podano nieprawidłowy format parametru!", "Error ocured!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił niespodziewany wyjątek!", "Error ocured!");
+            }
+        }
     }
 }
