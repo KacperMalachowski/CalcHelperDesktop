@@ -16,8 +16,35 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TabControl Grid.Row="0" >
-            <TabItem Content="" Header="Prosta - KP - Łuk"/>
-            <TabItem Header="Łuk - KP - Łuk"/>
+            <TabItem Header="Prosta - KP - Łuk">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="1" TextWrapping="Wrap">
+                        Aby obliczyć parametr przesunięcia [p] krzywej przejściowej między prostą i łukiem nalezy podać długość krzywej przejściowej i promień łuku docelowego.
+                    </TextBlock>
+                    <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                        <Label Content="Długość kp [m]:" Width="200" />
+                        <TextBox Name="TransitionCurveLengthBox" Height="23" TextWrapping="Wrap" Width="200" Text="80"/>
+                        <Label Content="Promień Łuku [m]:" Width="200" />
+                        <TextBox Name="CurveRadiusBox" Height="23" TextWrapping="Wrap" Width="200" Text="450"/>
+                        <Button Name="CalculateShiftParametrButton" Content="Oblicz" Margin="0,23,0,5" Click="CalculateShiftParametrButton_Click"/>
+                        <Separator Margin="10" />
+                        <Label Content="Parametr przesunięcia [p]:" />
+                        <TextBox Name="TransitionCurveShiftResult" Height="23" IsReadOnly="True" Text="0,60" />
+                        <Label Content="Połowa długości KP:" />
+                        <TextBox Name="HalfTransitionCurveLengthResult" Height="23" IsReadOnly="True" Text="40" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Łuk - KP - Łuk" IsEnabled="False"/>
         </TabControl>
     </Grid>
 </Page>
