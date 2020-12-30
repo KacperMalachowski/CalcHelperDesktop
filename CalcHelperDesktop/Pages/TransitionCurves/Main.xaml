@@ -19,7 +19,9 @@
             <TabItem Header="Prosta - KP - Łuk">
                 <local:StraightToArc />
             </TabItem>
-            <TabItem Header="Łuk - KP - Łuk" IsEnabled="False"/>
+            <TabItem Header="Łuk - KP - Łuk">
+                <local:ArcToArc />
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>
