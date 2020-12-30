@@ -37,5 +37,20 @@ namespace CalcHelperDesktop
         {
             _NavigationFrame.Navigate(new Pages.TransitionCurves());
         }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(this.Width < MinWidth)
+            {
+                this.Width = MinWidth;
+                MessageBox.Show($"Minimalna szerokość okna wynosi: {MinWidth} px!");
+            }
+
+            if (this.Height < MinHeight)
+            {
+                this.Width = MinHeight;
+                MessageBox.Show($"Minimalna wysokość okna wynosi: {MinHeight} px!");
+            }
+        }
     }
 }
