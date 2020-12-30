@@ -32,10 +32,9 @@
                     </TextBlock>
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
                         <Label Content="Długość kp [m]:" Width="200" />
-                        <TextBox Name="TransitionCurveLengthBox" Height="23" TextWrapping="Wrap" Width="200" Text="80"/>
+                        <TextBox Name="TransitionCurveLengthBox" Height="23" TextWrapping="Wrap" Width="200" Text="80" TextChanged="TransitionCurveLengthBox_TextChanged"/>
                         <Label Content="Promień Łuku [m]:" Width="200" />
-                        <TextBox Name="CurveRadiusBox" Height="23" TextWrapping="Wrap" Width="200" Text="450"/>
-                        <Button Name="CalculateShiftParametrButton" Content="Oblicz" Margin="0,23,0,5" Click="CalculateShiftParametrButton_Click"/>
+                        <TextBox Name="CurveRadiusBox" Height="23" TextWrapping="Wrap" Width="200" Text="450" TextChanged="CurveRadiusBox_TextChanged"/>
                         <Separator Margin="10" />
                         <Label Content="Parametr przesunięcia [p]:" />
                         <TextBox Name="TransitionCurveShiftResult" Height="23" IsReadOnly="True" Text="0,60" />

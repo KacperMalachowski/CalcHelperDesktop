@@ -29,7 +29,7 @@
         <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" Width="Auto" Grid.ColumnSpan="2" Margin="0,38,0,0" Grid.RowSpan="2" />
         <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Label Name="VersionLabel" HorizontalContentAlignment="Center" Content="Version:" />
-            <Label Name="CopyrightLabel" HorizontalContentAlignment="Center" Content="© Kacper Małachowski 2020" />
+            <Label Name="CopyleftLabel" HorizontalContentAlignment="Center" Content="Kacper Małachowski 2020" />
         </StackPanel>
     </Grid>
 </Window>
