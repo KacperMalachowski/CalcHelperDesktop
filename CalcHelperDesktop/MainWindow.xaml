@@ -11,23 +11,33 @@
         <local:WpConverter x:Key="WpConverter"/>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="173*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0" MinHeight="38" Grid.ColumnSpan="2" Margin="0,0,0,18" >
+        <Menu Grid.Row="0" MinHeight="38" Grid.ColumnSpan="2" >
             <MenuItem Name="StartNavbarItem" Header="Start" Click="StartNavbarItem_Click" />
             <MenuItem Header="Obliczenia" Margin="5,10" VerticalAlignment="Center" >
                 <MenuItem Name="TransitionCurvesNavbarItem" Header="Krzywe Przejściowe" Click="TransitionCurvesNavbarItem_Click" />
             </MenuItem>
         </Menu>
-        <Frame x:Name="_NavigationFrame" NavigationUIVisibility="Hidden" Width="Auto" Grid.ColumnSpan="2" Margin="0,38,0,0" Grid.RowSpan="2" />
-        <StackPanel Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.ColumnSpan="2">
+        <WrapPanel Grid.Row="1">
+            <Label Content="Lata budowy scenerii: " />
+            <ComboBox >
+                <ComboBoxItem Content="Przed 2010" IsSelected="True"/>
+                <ComboBoxItem Content="Po 2010"/>
+            </ComboBox>
+        </WrapPanel>
+        <Frame
+            x:Name="_NavigationFrame"
+            NavigationUIVisibility="Hidden"
+            Width="Auto"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+        />
+        <StackPanel Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.ColumnSpan="2">
             <Label Name="VersionLabel" HorizontalContentAlignment="Center" Content="Version:" />
             <Label Name="CopyleftLabel" HorizontalContentAlignment="Center" Content="Kacper Małachowski 2020" />
         </StackPanel>
